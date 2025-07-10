@@ -1,0 +1,12 @@
+clc,clearvars,close all;
+x = linspace(0, 1, 100);
+t = linspace(0, 1, 100);
+pde = @(x, t, u, DuDx) deal(1, DuDx, 0);
+ic = @(x) (2 * x) / (1 + x^2);
+bc = @(xl, ul, xr, ur, t) deal(ul - 0, 0, ur - 1, 0);
+T = pdepe(0, pde, ic, bc, x, t);
+surf(x, t, T);
+xlabel('x');
+ylabel('t');
+zlabel('T');
+title('1D Heat Equation');
